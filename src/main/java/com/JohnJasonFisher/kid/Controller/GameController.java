@@ -3,10 +3,7 @@ package com.JohnJasonFisher.kid.Controller;
 import com.JohnJasonFisher.kid.entity.Game;
 import com.JohnJasonFisher.kid.service.GameService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -21,5 +18,12 @@ public class GameController {
     public List<Game> searchGamesByTitle(@RequestParam(value = "title", required = true) String title) {
         List<Game> results = gameService.searchGamesByTitle(title);
         return results;
+    }
+
+    @PostMapping("/games")
+    // maybe @Valid instead of final? idk
+    public Game createdGame(@RequestBody final Game game) throws Exception {
+        Game created = gameService.insertGame(game);
+        return created;
     }
 }
