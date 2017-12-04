@@ -1,5 +1,7 @@
 package com.JohnJasonFisher.kid.entity;
 
+import org.hibernate.validator.constraints.NotBlank;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -12,9 +14,11 @@ public class Game {
     private Long id;
 
     @Column(name="title")
+    @NotBlank
     private String title;
 
     @Column(name="description")
+    @NotBlank
     private String description;
 
     @Column(name="release_date")
