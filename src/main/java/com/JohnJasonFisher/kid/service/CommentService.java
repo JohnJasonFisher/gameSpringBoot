@@ -27,7 +27,6 @@ public class CommentService {
         return results;
     }
 
-    // creates comment about game
     public Comment createGameComment(Comment comment, Long gameId) throws Exception {
         if (null == comment || null == gameId) {
             throw new Exception("Invalid Parameters.");
