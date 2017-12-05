@@ -5,6 +5,7 @@ import com.JohnJasonFisher.kid.repository.GameRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 
@@ -38,6 +39,17 @@ public class GameService {
 
         Game insertedGame = gameRepo.save(game);
         return insertedGame;
+    }
+
+    public void updateGameById(
+            Long id,
+            Game gameDetails
+    ) {
+        Game updateGame = gameRepo.findGameById(id);
+        updateGame.setTitle(gameDetails.getTitle());
+        updateGame.setDescription(gameDetails.getDescription());
+        updateGame.setRelease_date(gameDetails.getRelease_date());
+        gameRepo.save(updateGame);
     }
 
 }
