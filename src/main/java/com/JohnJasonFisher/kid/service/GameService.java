@@ -14,10 +14,20 @@ public class GameService {
     @Autowired
     private GameRepository gameRepo;
 
+    public Game searchGameById(Long id) {
+        Game result = gameRepo.findGameById(id);
+        return result;
+    }
+
     // needs logic if title is null
     public List<Game> searchGamesByTitle(String title) {
         String formattedTitle = "%" + title + "%";
         List<Game> results = gameRepo.findGamesByTitle(formattedTitle);
+        return results;
+    }
+
+    public List<Game> searchAllGames() {
+        List<Game> results = gameRepo.findAllGames();
         return results;
     }
 
