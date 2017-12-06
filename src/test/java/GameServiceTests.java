@@ -15,16 +15,7 @@ import java.util.List;
 @SpringBootTest(classes = App.class)
 public class GameServiceTests {
 
-    // By autowiring in our game repository, we will have access to all of it's public methods
-    @Autowired
-    private GameRepository gameRepo;
 
-    @Test
-    public void testFindGameBytitle() {
-        // We want to find all games with a title like "mario"
-        List<Game> results = gameRepo.findGamesByTitle("%mario%");
-        Assert.assertEquals(3, results.size());
-    }
 
     @Autowired
     private GameService gameService;
