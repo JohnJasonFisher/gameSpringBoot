@@ -38,12 +38,39 @@ public class GameServiceTests {
         Game game3 = new Game();
         game3.setTitle("Donkey Kong Country");
         game3.setDescription("Platformer");
-        gameRepo.save(game3);
+        Game savedGame = gameRepo.save(game3);
     }
 
     @After
     public void tearDown(){
         gameRepo.deleteAll();
+    }
+
+    // GameRepo Tests
+
+    @Test
+    public void testFindGameById() {
+        Game game = new Game();
+        game.setId(666L);
+        game.setTitle("Mario 64");
+        game.setDescription("Platformer");
+        Game created = gameRepo.save(game);
+
+        Game result = gameRepo.findGameById(created.getId());
+
+        Assert.assertEquals( "Mario 64", result.getTitle());
+    }
+
+    @Test
+    public void testFindGamesByTitle() {
+        List<Game> results = gameRepo.findGamesByTitle("%mario%");
+        Assert.assertEquals(2, results.size());
+    }
+
+    @Test
+    public void testFindAllGames() {
+        List<Game> results = gameRepo.findAllGames();
+        Assert.assertEquals(3, results.size());
     }
 
     @Test
