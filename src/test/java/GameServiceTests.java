@@ -2,7 +2,9 @@ import com.JohnJasonFisher.kid.App;
 import com.JohnJasonFisher.kid.entity.Game;
 import com.JohnJasonFisher.kid.repository.GameRepository;
 import com.JohnJasonFisher.kid.service.GameService;
+import org.junit.After;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,10 +20,36 @@ public class GameServiceTests {
     @Autowired
     private GameService gameService;
 
+    @Autowired
+    private GameRepository gameRepo;
+
+    @Before
+    public void setUp() {
+        Game game1 = new Game();
+        game1 .setTitle("Super Mario Bros");
+        game1 .setDescription("Platformer");
+        gameRepo.save(game1);
+
+        Game game2 = new Game();
+        game2.setTitle("Super Mario Bros 2");
+        game2.setDescription("Platformer");
+        gameRepo.save(game2);
+
+        Game game3 = new Game();
+        game3.setTitle("Donkey Kong Country");
+        game3.setDescription("Platformer");
+        gameRepo.save(game3);
+    }
+
+    @After
+    public void tearDown(){
+        gameRepo.deleteAll();
+    }
+
     @Test
     public void testSearchGamesByTitle() {
-        List<Game> results = gameService.searchGamesByTitle("kong");
-        Assert.assertEquals(1, results.size());
+        List<Game> results = gameService.searchGamesByTitle("mario");
+        Assert.assertEquals(2, results.size());
     }
 
     @Test
@@ -32,5 +60,4 @@ public class GameServiceTests {
         Game created = gameService.insertGame(game);
         Assert.assertNotNull(created.getId());
     }
-
 }
