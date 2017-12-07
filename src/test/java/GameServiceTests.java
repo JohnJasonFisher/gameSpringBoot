@@ -15,8 +15,6 @@ import java.util.List;
 @SpringBootTest(classes = App.class)
 public class GameServiceTests {
 
-
-
     @Autowired
     private GameService gameService;
 
