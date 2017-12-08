@@ -55,7 +55,7 @@ public class GameServiceTests {
         game.setDescription("Platformer");
         Game created = gameRepo.save(game);
 
-        Game result = gameRepo.findGameById(created.getId());
+        Game result = gameRepo.getOne(created.getId());
 
         Assert.assertEquals( "Mario 64", result.getTitle());
     }
@@ -68,7 +68,7 @@ public class GameServiceTests {
 
     @Test
     public void testFindAllGames() {
-        List<Game> results = gameRepo.findAllGames();
+        List<Game> results = gameRepo.findAll();
         Assert.assertEquals(3, results.size());
     }
 

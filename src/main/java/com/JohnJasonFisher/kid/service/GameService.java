@@ -16,7 +16,7 @@ public class GameService {
     private GameRepository gameRepo;
 
     public Game searchGameById(Long id) {
-        Game result = gameRepo.findGameById(id);
+        Game result = gameRepo.getOne(id);
         return result;
     }
 
@@ -28,7 +28,7 @@ public class GameService {
     }
 
     public List<Game> searchAllGames() {
-        List<Game> results = gameRepo.findAllGames();
+        List<Game> results = gameRepo.findAll();
         return results;
     }
 
@@ -45,7 +45,7 @@ public class GameService {
             Long id,
             Game gameDetails
     ) {
-        Game updateGame = gameRepo.findGameById(id);
+        Game updateGame = gameRepo.getOne(id);
         updateGame.setTitle(gameDetails.getTitle());
         updateGame.setDescription(gameDetails.getDescription());
         updateGame.setRelease_date(gameDetails.getRelease_date());
