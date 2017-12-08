@@ -14,7 +14,4 @@ public interface GameRepository extends CrudRepository<Game, Long>, JpaRepositor
 
     @Query("SELECT g FROM Game g WHERE lower(g.title) LIKE lower(?1)")
     public List<Game> findGamesByTitle(String title);
-
-//    @Query("SELECT g FROM Game g")
-//    public List<Game> findAllGames();
 }
